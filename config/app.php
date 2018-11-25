@@ -2,6 +2,13 @@
 
 return [
 
+    'nav' => [
+        '/pastebin/create' => 'Create paste',
+        '/pastebin/show' => 'My pastes',
+        '/about' => 'About',
+        '/contact' => 'Contact',
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -13,7 +20,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => 'Pastebin',
 
     /*
     |--------------------------------------------------------------------------
