@@ -14,11 +14,14 @@
 Route::get('/', 'WelcomeController');
 
 Route::get('/pastebin/create', 'PastebinController@create');
-Route::get('/pastebin/show', 'PastebinController@show');
-Route::post('/pastebin', 'PastebinController@save');
-Route::post('/pastebin/{id}', 'PastebinController@update');
-Route::get('/pastebin/view/{id}', 'PastebinController@view');
-Route::get('/pastebin/edit/{id}', 'PastebinController@edit');
+Route::post('/pastebin', 'PastebinController@store');
+
+Route::get('/pastebin', 'PastebinController@index');
+Route::get('/pastebin/{id}', 'PastebinController@show');
+
+Route::get('/pastebin/{id}/edit', 'PastebinController@edit');
+Route::put('/pastebin/{id}', 'PastebinController@update');
+
 Route::get('/pastebin/delete/{id}', 'PastebinController@delete');
 
 Route::view('/about', 'about');

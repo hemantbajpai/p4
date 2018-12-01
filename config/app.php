@@ -4,7 +4,7 @@ return [
 
     'nav' => [
         '/pastebin/create' => 'Create paste',
-        '/pastebin/show' => 'My pastes',
+        '/pastebin' => 'My pastes',
         '/about' => 'About',
         '/contact' => 'Contact',
     ],
