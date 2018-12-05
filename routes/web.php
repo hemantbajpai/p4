@@ -13,16 +13,20 @@
 
 Route::get('/', 'WelcomeController');
 
-Route::get('/pastebin/create', 'PastebinController@create');
-Route::post('/pastebin', 'PastebinController@store');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/pastebin/create', 'PastebinController@create');
+    Route::post('/pastebin', 'PastebinController@store');
 
-Route::get('/pastebin', 'PastebinController@index');
-Route::get('/pastebin/{id}', 'PastebinController@show');
+    Route::get('/pastebin', 'PastebinController@index');
+    Route::get('/pastebin/{id}', 'PastebinController@show');
 
-Route::get('/pastebin/{id}/edit', 'PastebinController@edit');
-Route::put('/pastebin/{id}', 'PastebinController@update');
+    Route::get('/pastebin/{id}/edit', 'PastebinController@edit');
+    Route::put('/pastebin/{id}', 'PastebinController@update');
 
-Route::get('/pastebin/delete/{id}', 'PastebinController@delete');
+    Route::get('/pastebin/delete/{id}', 'PastebinController@delete');
+});
 
 Route::view('/about', 'about');
 Route::view('/contact', 'contact');
+Auth::routes();
+

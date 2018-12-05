@@ -27,11 +27,11 @@ class PastebinController extends Controller
         ]);
     }
 
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         $paste = Paste::find($id);
 
-        if (!$paste) {
+        if (!$paste || $paste->user_id != $request->user()->id) {
             return redirect('/pastebin')->with([
                 'alert' => 'Paste not found.'
             ]);
@@ -40,11 +40,11 @@ class PastebinController extends Controller
         return view('pastebin.edit')->with('paste', $paste);
     }
 
-    public function delete($id)
+    public function delete(Request $request, $id)
     {
         $paste = Paste::find($id);
 
-        if (!$paste) {
+        if (!$paste || $paste->user_id != $request->user()->id) {
             return redirect('/pastebin')->with([
                 'alert' => 'Paste not found.'
             ]);
@@ -57,11 +57,11 @@ class PastebinController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $paste = Paste::find($id);
 
-        if (!$paste) {
+        if (!$paste || $paste->user_id != $request->user()->id) {
             return redirect('/pastebin')->with([
                 'alert' => 'Paste not found.'
             ]);
@@ -72,7 +72,9 @@ class PastebinController extends Controller
 
     public function index(Request $request)
     {
-        $pastes = Paste::orderBy('date')->get();;
+        $user = $request->user();
+
+        $pastes = $user->pastes()->orderBy('date')->get();;
 
         foreach ($pastes as $paste) {
             if ($paste->date < date("U")) {
@@ -103,7 +105,7 @@ class PastebinController extends Controller
         # Note how each property corresponds to a field in the table
         $paste->text = $request->input('text');
         $paste->date = $request->input('date');
-
+        $paste->user_id = $request->user()->id;
         # Invoke the Eloquent `save` method to generate a new row in the
         # `books` table, with the above data
         $paste->save();

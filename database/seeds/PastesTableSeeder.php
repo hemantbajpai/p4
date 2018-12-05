@@ -26,6 +26,7 @@ class PastesTableSeeder extends Seeder
             $paste->updated_at = Carbon\Carbon::now()->subDays($count)->toDateTimeString();
             $paste->date = $pasteData[0];
             $paste->text = $pasteData[1];
+            $paste->user_id = 1;
             $paste->save();
             $count--;
         }

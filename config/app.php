@@ -2,7 +2,15 @@
 
 return [
 
+# Guest navigation links
     'nav' => [
+        '/register' => 'Register',
+        '/login' => 'Login',
+        '/about' => 'About',
+        '/contact' => 'Contact',
+    ],
+
+    'nav1' => [
         '/pastebin/create' => 'Create paste',
         '/pastebin' => 'My pastes',
         '/about' => 'About',
@@ -179,6 +187,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\ViewServiceProvider::class,
 
     ],
 
