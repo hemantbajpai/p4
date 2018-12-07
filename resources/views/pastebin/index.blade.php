@@ -25,7 +25,7 @@
                     <a href='/pastebin/{{ $paste['id'] }}/edit'><i class="fas fa-pencil-alt"></i></a>
                 </td>
                 <td>
-                    <a href='/pastebin/delete/{{ $paste['id'] }}'><i class="fas fa-trash-alt"></i></a>
+                    <a href='/pastebin/{{ $paste['id'] }}/delete'><i class="fas fa-trash-alt"></i></a>
                 </td>
             </tr>
         @endforeach

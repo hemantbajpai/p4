@@ -26,6 +26,16 @@
         <input type='text' name='text' id='text' value='{{ old('text', $paste->text) }}'>
         @include('modules.field-error', ['field' => 'text'])
 
+        <label>Tags</label>
+        <ul class='checkboxes'>
+            @foreach($tags as $tagId => $tagName)
+                <li><label><input {{ (in_array($tagId, $tagsForThisPaste)) ? 'checked' : '' }}
+                                  type='checkbox'
+                                  name='tags[]'
+                                  value='{{ $tagId }}'> {{ $tagName }}</label></li>
+            @endforeach
+        </ul>
+
         <input type='submit' value='Save' class='btn btn-primary'>
     </form>
 @endsection

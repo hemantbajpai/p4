@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Paste;
+use App\Tag;
 
 class PastebinController extends Controller
 {
@@ -16,7 +17,7 @@ class PastebinController extends Controller
         ]);
 
         $paste = Paste::find($id);
-
+        $paste->tags()->sync($request->tags);
         $paste->text = $request->input('text');
         $paste->date = $request->input('date');
 
@@ -36,8 +37,14 @@ class PastebinController extends Controller
                 'alert' => 'Paste not found.'
             ]);
         }
+        $tags = Tag::getForCheckboxes();
+        $tagsForThisPaste = $paste->tags()->pluck('tags.id')->toArray();
 
-        return view('pastebin.edit')->with('paste', $paste);
+        return view('pastebin.edit')->with([
+            'paste' => $paste,
+            'tags' => $tags,
+            'tagsForThisPaste' => $tagsForThisPaste
+        ]);
     }
 
     public function delete(Request $request, $id)
@@ -50,6 +57,15 @@ class PastebinController extends Controller
             ]);
         }
 
+        return view('pastebin.delete')->with([
+            'paste' => $paste,
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        $paste = Paste::find($id);
+        $paste->tags()->detach();
         $paste->delete();
 
         return redirect('/pastebin')->with([
@@ -78,6 +94,7 @@ class PastebinController extends Controller
 
         foreach ($pastes as $paste) {
             if ($paste->date < date("U")) {
+                $paste->tags()->detach();
                 $paste->delete();
             }
         }
@@ -87,7 +104,9 @@ class PastebinController extends Controller
 
     public function create(Request $request)
     {
-        return view('pastebin.create');
+        $tags = Tag::getForCheckboxes();
+
+        return view('pastebin.create')->with('tags', $tags);
     }
 
     public function store(Request $request)
@@ -109,6 +128,7 @@ class PastebinController extends Controller
         # Invoke the Eloquent `save` method to generate a new row in the
         # `books` table, with the above data
         $paste->save();
+        $paste->tags()->sync($request->tags);
 
         return redirect('/pastebin')->with([
             'alert' => 'Congratulations, your paste is added successfully.'

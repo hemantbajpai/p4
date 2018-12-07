@@ -23,7 +23,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/pastebin/{id}/edit', 'PastebinController@edit');
     Route::put('/pastebin/{id}', 'PastebinController@update');
 
-    Route::get('/pastebin/delete/{id}', 'PastebinController@delete');
+    Route::get('/pastebin/{id}/delete', 'PastebinController@delete');
+    Route::delete('/pastebin/{id}', 'PastebinController@destroy');
 });
 
 Route::view('/about', 'about');

@@ -25,6 +25,17 @@
         <input type='text' name='text' id='text' value='{{ old('text') }}'>
         @include('modules.field-error', ['field' => 'text'])
 
+        <label>Tags</label>
+        <ul class='checkboxes'>
+            @foreach($tags as $tagId => $tagName)
+                <li><label><input
+                                {{ (in_array($tagId, old('tags', []) )) ? 'checked' : '' }}
+                                type='checkbox'
+                                name='tags[]'
+                                value='{{ $tagId }}'> {{ $tagName }}</label></li>
+            @endforeach
+        </ul>
+
         <input type='submit' value='Add' class='btn btn-primary'>
     </form>
 

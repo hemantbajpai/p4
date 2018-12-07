@@ -119,6 +119,25 @@ input[type='date'] {
     display: inline;
 }
 
+input[type='checkbox'], input[type='radio'] {
+    display: inline;
+}
+
+input[type='checkbox'] + label {
+    display: inline;
+    font-weight: normal;
+}
+
+ul.checkboxes {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul.checkboxes label {
+    font-weight: normal;
+    margin: 0;
+}
+
 .btn {
     margin-top: 20px;
     font-size: 1.5rem;
