@@ -7,29 +7,33 @@
 Primary tables:
   + `pastebin`
   + `users`
+  + `tags`
 
 Pivot table(s):
-  + `book_tag`
+  + `paste_tag`
 
 ## CRUD
 
 __Create__
-  + Visit <http://p4.foobooks.me/books/create>
+  + Visit <http://p4.heb726.me/pastebin/create>
   + Fill out form
-  + Click *Add new book*
+  + Click *Add*
   + Observe confirmation message
   
 __Read__
-  + Visit <http://p4.foobooks.me/books> see a listing of all books
+  + Visit <http://p4.heb726.me/pastebin> see a listing of all paste
+  + Click on any view icon to view the paste
   
 __Update__
-  + Visit <http://p4.foobooks.me/books>; choose the Edit button next to one of the books
+  + Visit <http://p4.heb726.me/pastebin> see a listing of all paste
+  + Click on any edit icon to edit the paste
   + Make some edit to form
-  + Click *Save changes*
+  + Click *Save*
   + Observe confirmation message
   
 __Delete__
-  + Visit <http://p4.foobooks.me/books>; choose the Delete button next to one of the books
+  + Visit <http://p4.heb726.me/pastebin> see a listing of all paste
+  + Click on any delete icon to delete the paste
   + Confirm deletion
   + Observe confirmation message
 
