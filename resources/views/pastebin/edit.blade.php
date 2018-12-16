@@ -26,7 +26,7 @@
         <input type='text' name='text' id='text' value='{{ old('text', $paste->text) }}'>
         @include('modules.field-error', ['field' => 'text'])
 
-        <label>Tags</label>
+        <label>Categories</label>
         <ul class='checkboxes'>
             @foreach($tags as $tagId => $tagName)
                 <li><label><input {{ (in_array($tagId, $tagsForThisPaste)) ? 'checked' : '' }}

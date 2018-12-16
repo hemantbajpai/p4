@@ -25,7 +25,7 @@
         <input type='text' name='text' id='text' value='{{ old('text') }}'>
         @include('modules.field-error', ['field' => 'text'])
 
-        <label>Tags</label>
+        <label>Categories</label>
         <ul class='checkboxes'>
             @foreach($tags as $tagId => $tagName)
                 <li><label><input
