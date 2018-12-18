@@ -18,7 +18,7 @@ class PasteTagTableSeeder extends Seeder
             'Bye' => ['classic', 'technology', 'universe', 'nonfiction']
         ];
 
-        # Now loop through the above array, creating a new pivot for each book to tag
+        # Now loop through the above array, creating a new pivot for each paste to tag
         foreach ($pastes as $text => $tags) {
             # First get the paste
             $paste = Paste::where('text', 'like', $text)->first();
@@ -27,7 +27,7 @@ class PasteTagTableSeeder extends Seeder
             foreach ($tags as $tagName) {
                 $tag = Tag::where('name', 'LIKE', $tagName)->first();
 
-                # Connect this tag to this book
+                # Connect this tag to this paste
                 $paste->tags()->save($tag);
             }
         }

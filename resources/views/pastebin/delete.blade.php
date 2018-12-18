@@ -7,8 +7,8 @@
 @section('content')
     <h1>Confirm deletion</h1>
 
-    <p>Are you sure you want to delete <strong>{{ $paste->title }}</strong>?</p>
-
+    <p>Do you really want to delete this paste?</p>
+    <p>Text: {{ $paste['text'] }}</p>
     <form method='POST' action='/pastebin/{{ $paste->id }}'>
         {{ method_field('delete') }}
         {{ csrf_field() }}

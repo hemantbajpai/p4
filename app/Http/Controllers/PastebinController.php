@@ -139,7 +139,7 @@ class PastebinController extends Controller
             'date' => 'required|date|after:today'
         ]);
 
-        # Instantiate a new Book Model object
+        # Instantiate a new Paste Model object
         $paste = new Paste();
 
         # Set the properties
@@ -147,7 +147,7 @@ class PastebinController extends Controller
         $paste->date = $request->input('date');
         $paste->user_id = $request->user()->id;
 
-        # `save` method to generate a new row in the `books` table
+        # `save` method to generate a new row in the `pastes` table
         $paste->save();
         $paste->tags()->sync($request->tags);
 
